@@ -44,9 +44,10 @@ func GetIncludedRunes(allRunes string, excludedRunes map[rune]bool) string {
 }
 
 func GetRandRuneSequences(runes string, linesToGenerate int, runesPerLine int) []string {
-	sequences := make([]string, linesToGenerate)
+	sequences := make([]string, linesToGenerate+2)
 	numRunes := big.NewInt(int64(len(runes)))
 
+	sequences[0] = GetSequenceMarkers(runesPerLine)
 	for i := 0; i < linesToGenerate; i++ {
 		sequence := make([]rune, runesPerLine)
 		for j := 0; j < runesPerLine; j++ {
@@ -56,10 +57,23 @@ func GetRandRuneSequences(runes string, linesToGenerate int, runesPerLine int) [
 			}
 			sequence[j] = rune(runes[nBig.Int64()])
 		}
-		sequences[i] = string(sequence)
+		sequences[i+1] = string(sequence)
 	}
+	sequences[linesToGenerate+1] = GetSequenceMarkers(runesPerLine)
 
 	return sequences
+}
+
+func GetSequenceMarkers(runesPerLine int) string {
+	result := ""
+	for i := 1; i <= runesPerLine; i++ {
+		if i%5 == 0 {
+			result += "|"
+		} else {
+			result += "."
+		}
+	}
+	return result
 }
 
 func main() {
