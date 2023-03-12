@@ -1,5 +1,5 @@
 # PasswordGenerator
-Generates strong &amp; secure random passwords.  Does not store any data, and is completely private.  Does not require an internet connection.
+Strong and secure random password generator.  Does not store any data, and is completely private.  Does not require an internet connection.
 
 ## Useage
 To use, compile the source files and run the program with the `randpw` command. Output will be generated like so-
